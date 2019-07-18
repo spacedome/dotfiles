@@ -1,6 +1,6 @@
 
 
-{ config, pkgs, ... };
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -10,7 +10,7 @@
   system.stateVersion = "19.03";
 
   networking.hostName = "t470";
-  networking.hostId = "007f0100";
+  #networking.hostId = "007f0100";
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -23,7 +23,7 @@
     isNormalUser = true;
     group = "users";
     extraGroups = [ "wheel" "libvirtd" "audio" "video" "systemd-journal" "networkmanager" "uucp" "sys" "adm" ];
-  }
+  };
 
   i18n = {
     consoleFont = "Lat2-Terminus16";
@@ -35,19 +35,19 @@
 
 
 
-  networking.wireless.enable = true;
+  #networking.wireless.enable = true;
   networking.networkmanager.enable = true;
 
   sound.enable = true;
   
   hardware = {
-    bluetooth.enable = true;
-    bluetooth.powerOnBoot = false;
-    brightnessctl.enable = true;
-    cpu.intel.updateMicrocode = true;
-    opengl.enable = true;
-    opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
-    trackpoint.enable = true;
+    #bluetooth.enable = true;
+    #bluetooth.powerOnBoot = false;
+    #brightnessctl.enable = true;
+    #cpu.intel.updateMicrocode = true;
+    #opengl.enable = true;
+    #opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+    #trackpoint.enable = true;
     pulseaudio.package = pkgs.pulseaudioFull;
     pulseaudio.enable = true;
     sane.enable = true;
@@ -67,7 +67,7 @@
     desktopManager.xterm.enable = false;
     desktopManager.plasma5.enable = true;
     displayManager.sddm.enable = truel
-  }
+  };
   
   services.redshift.enable = true;
   services.redshift.latitude = "42";
@@ -75,7 +75,7 @@
   services.redshift.temperature.day = 6500;
   services.redshift.temperature.night = 2500;
 
-  nixpkgs.pkgs.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
   fonts = {
     fontconfig.enable = true;

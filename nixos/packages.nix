@@ -2,10 +2,10 @@ pkgs: with pkgs; [
   # man pages
   man-pages
 
-  glxinfo
-  vdpauinfo # provides vdpauinfo
-  libva     # provides vainfo
-  intel-media-driver
+  #glxinfo
+  #vdpauinfo # provides vdpauinfo
+  #libva     # provides vainfo
+  #intel-media-driver
 
   firefox-bin
 
@@ -47,7 +47,7 @@ pkgs: with pkgs; [
   openssl
   lsof
   usbutils
-  dvd+rw-tools
+  #dvdplusrwtools
   powertop
   bridge-utils
   dnsmasq
@@ -61,7 +61,7 @@ pkgs: with pkgs; [
   wget
   unzip
   htop
-  python3.7-glances
+  #glances
   binutils
   psmisc
   tree
