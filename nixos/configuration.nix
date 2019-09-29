@@ -4,7 +4,7 @@
 
 {
   imports = [
-      /etc/nixos/hardware-configuration.nix
+      ./hardware-configuration.nix
   ];
 
   system.stateVersion = "19.03";
@@ -35,8 +35,9 @@
 
 
 
-  #networking.wireless.enable = true;
-  networking.networkmanager.enable = true;
+  # networking.wireless.enable = true;
+  # networking.networkmanager.enable = true;
+  networking.firewall.enable = false;
 
   sound.enable = true;
   
@@ -66,7 +67,7 @@
     wacom.enable = true;
     desktopManager.xterm.enable = false;
     desktopManager.plasma5.enable = true;
-    displayManager.sddm.enable = truel
+    displayManager.sddm.enable = true;
   };
   
   services.redshift.enable = true;

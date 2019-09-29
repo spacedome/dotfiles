@@ -1,0 +1,79 @@
+snippet eqnn "Equation without a number" b
+\begin{equation*}
+	${0:${VISUAL}}
+\end{equation*}
+endsnippet
+
+snippet beg "Begin general begin" b
+\begin{$1}
+	${0:${VISUAL}}
+\end{$1}
+endsnippet
+
+snippet al "Align" b
+\begin{align}
+	${0:${VISUAL}}
+\end{align}
+endsnippet
+
+snippet alnn "Align without a number" b
+\begin{align*}
+	${0:${VISUAL}}
+\end{align*}
+endsnippet
+
+snippet case "cases environment" w
+\begin{cases}
+	${0:${VISUAL}} & \\\\
+\end{cases}
+endsnippet
+
+snippet dcase "dcases (displaymath) environment" w
+\begin{dcases}
+	${0:${VISUAL}} & \\\\
+\end{dcases}
+endsnippet
+
+snippet def "definition" b
+\begin{definition}[$1]
+	${0:${VISUAL}}
+\end{definition}
+endsnippet
+
+snippet theorem "theorem" b
+\begin{theorem}[$1]
+	${0:${VISUAL}}
+\end{theorem}
+endsnippet
+
+snippet bb "mathbb" w
+\mathbb{$1}
+endsnippet
+
+snippet cal "mathcal" w
+\mathcal{$1}
+endsnippet
+
+snippet mm "inline mathmode" w
+\( $1 \)
+endsnippet
+
+snippet fr "fraction" w
+\frac{$1}{$2}
+endsnippet
+
+snippet int "integral" w
+\int_{$1}^{$2}
+endsnippet
+
+snippet sum "summation" w
+\sum_{$1}^{$2}
+endsnippet
+
+snippet ( "math mode \left( \right)" w
+\left( $1 \right)
+endsnippet
+
+snippet < "math mode \left< \right>" w
+\left< $1 \right>
+endsnippet

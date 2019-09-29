@@ -37,6 +37,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips'
 Plug 'w0rp/ale'
 Plug 'lervag/vimtex'
+" Plug   'KeitaNakamura/tex-conceal.vim', {'for': 'tex'} " for VimPlug
 
 " Initialize plugin system
 call plug#end()
@@ -66,3 +67,31 @@ map <right> <nop>
 
 " Enable the mouse !
 set mouse=a
+
+
+" vimtex for minted
+let g:vimtex_compiler_latexmk = {
+    \ 'options' : [
+    \   '-pdf',
+    \   '-shell-escape',
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \}
+
+let g:tex_flavor='latex'
+"let g:vimtex_view_method='zathura'
+" let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+hi clear Conceal
+hi Conceal ctermfg=6
+set omnifunc=syntaxcomplete#Complete
+
+let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/snips"]
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+let g:UltiSnipsEditSplit="vertical"
