@@ -94,11 +94,8 @@
     isNormalUser = true;
     description = "julien";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-      kate
-    #  thunderbird
-    ];
+    # manage with home-manager
+    packages = with pkgs; [ ];
   };
 
   # Enable automatic login for the user.
@@ -118,30 +115,26 @@
     vimPlugins.nvim-treesitter.withAllGrammars
     vimPlugins.telescope-nvim
     vimPlugins.telescope-fzf-native-nvim
-    anki
     git
     wget
-    emacs
-    ((emacsPackagesFor emacs).emacsWithPackages (epkgs: with epkgs; [ vterm pdf-tools emacsql-sqlite ])) # doesn't seem to work
     ripgrep
     fd
     fzf
     coreutils
-    clang
     eza
-    jetbrains-mono
-    oversteer
-    krita
-    smplayer
     alacritty
-    glances
-    # qbittorrent-qt5
+    btop
+    powertop
+    tlp
+    unzip
+    usbutils
+    xclip
   ];
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
+  # programs.steam = {
+  #   enable = true;
+  #   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+  #   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  # };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
