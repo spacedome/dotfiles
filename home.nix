@@ -67,6 +67,9 @@
     # '';
   };
 
+  programs.lazygit.enable = true;
+  programs.helix.defaultEditor = true;
+
   programs.mpv.enable = true;
   programs.mpv.config = {
     loop = true;
