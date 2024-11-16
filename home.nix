@@ -40,6 +40,7 @@
     jetbrains-mono
     krita
     mpv
+    ispell
     nil # nix lsp
     nixd # nix lsp
     signal-desktop
@@ -67,6 +68,9 @@
     # '';
   };
 
+  programs.nh.enable = true;
+  programs.nh.flake = ./.;
+
   programs.lazygit.enable = true;
   programs.helix.defaultEditor = true;
 
@@ -80,6 +84,7 @@
     "Alt+k" = ''playlist-shuffle ; show-text ''${playlist} 4000'';
   };
 
+  programs.nushell.enable = true;
   programs.bash.enable = true;
   programs.fzf.enable = true;
   programs.fzf.enableBashIntegration = true;
