@@ -41,6 +41,8 @@
     krita
     mpv
     ispell
+    graphviz
+    difftastic
     nil # nix lsp
     nixd # nix lsp
     signal-desktop
@@ -71,6 +73,7 @@
   programs.nh.enable = true;
   programs.nh.flake = ./.;
 
+  programs.git.difftastic.enable = true;
   programs.lazygit.enable = true;
   programs.helix.defaultEditor = true;
 

@@ -67,7 +67,7 @@
   services.printing.drivers = [ pkgs.brlaser ]; 
 
   # Enable mullvad-vpn
-  # services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.enable = true;
 
   # Enable sound with pipewire.
   #  sound.enable = true;
@@ -129,6 +129,7 @@
     unzip
     usbutils
     xclip
+    mullvad-vpn
   ];
   # programs.steam = {
   #   enable = true;
@@ -189,6 +190,10 @@
     "https://cache.iog.io"
   ];
 
+
+  environment.variables = {
+    FREETYPE_PROPERTIES="cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
+  };
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
   programs.ssh.startAgent = true;
