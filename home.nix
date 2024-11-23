@@ -42,7 +42,6 @@
     mpv
     ispell
     graphviz
-    difftastic
     nil # nix lsp
     nixd # nix lsp
     signal-desktop
@@ -73,9 +72,21 @@
   programs.nh.enable = true;
   programs.nh.flake = ./.;
 
+  programs.git = {
+    enable = true;
+    userName = "spacedome";
+    userEmail = "spacedome@users.noreply.github.com";
+  };
   programs.git.difftastic.enable = true;
   programs.lazygit.enable = true;
   programs.helix.defaultEditor = true;
+
+  programs.yazi = {
+    enable = true;
+    enableBashIntegration = true;
+    enableNushellIntegration = true;
+  };
+  
 
   programs.mpv.enable = true;
   programs.mpv.config = {
