@@ -35,6 +35,9 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     anki
+    jq
+    p7zip
+    imagemagick
     firefox
     helix
     jetbrains-mono
@@ -82,6 +85,11 @@
   programs.helix.defaultEditor = true;
 
   programs.yazi = {
+    enable = true;
+    enableBashIntegration = true;
+    enableNushellIntegration = true;
+  };
+  programs.zoxide = {
     enable = true;
     enableBashIntegration = true;
     enableNushellIntegration = true;
