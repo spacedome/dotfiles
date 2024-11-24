@@ -52,6 +52,12 @@
     zathura
     zotero
     # qbittorrent-qt5
+    hlint
+    ormolu
+    ghc
+    cabal-install
+    ghc
+    haskell-language-server
     ((emacsPackagesFor emacs).emacsWithPackages (
       epkgs: with epkgs; [ vterm pdf-tools emacsql-sqlite ]
     )) 
