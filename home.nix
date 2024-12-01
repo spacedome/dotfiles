@@ -57,6 +57,7 @@
     ghc
     cabal-install
     ghc
+    stack
     haskell-language-server
     ((emacsPackagesFor emacs).emacsWithPackages (
       epkgs: with epkgs; [ vterm pdf-tools emacsql-sqlite ]
