@@ -43,6 +43,7 @@
     jetbrains-mono
     krita
     mpv
+    digikam
     ispell
     graphviz
     nil # nix lsp
