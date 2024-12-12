@@ -60,9 +60,9 @@
     ghc
     stack
     haskell-language-server
-    ((emacsPackagesFor emacs).emacsWithPackages (
-      epkgs: with epkgs; [ vterm pdf-tools emacsql-sqlite ]
-    )) 
+    ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
+    epkgs.vterm epkgs.pdf-tools epkgs.emacsql-sqlite
+    ]))
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
