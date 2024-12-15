@@ -40,7 +40,6 @@
     imagemagick
     firefox
     helix
-    jetbrains-mono
     krita
     mpv
     digikam
@@ -60,11 +59,24 @@
     ghc
     stack
     haskell-language-server
-    ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
-    epkgs.vterm epkgs.pdf-tools epkgs.emacsql-sqlite
-    ]))
+    direnv
+    #fonts
+    noto-fonts
+    noto-fonts-extra
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    noto-fonts-emoji
+    liberation_ttf
+    eb-garamond
+    jetbrains-mono
+    nerd-fonts.fira-code
   ];
 
+  programs.emacs = {
+    enable = true;
+    extraPackages = epkgs: [ epkgs.vterm epkgs.pdf-tools epkgs.emacsql-sqlite ];
+  };
+  
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
