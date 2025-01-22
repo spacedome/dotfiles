@@ -48,13 +48,27 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  specialisation = {
+    kde.configuration = {
+      system.nixos.tags = [ "kde" ];
+      # Enable the X11 windowing system.
+      services.xserver.enable = true;
+      # Enable the KDE Plasma Desktop Environment.
+      services.displayManager.sddm.enable = true;
+      services.xserver.desktopManager.plasma5.enable = true;
+      environment.plasma5.excludePackages = [ pkgs.kdePackages.baloo ];
+    };
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  environment.plasma5.excludePackages = [ pkgs.kdePackages.baloo ];
+    hyprland.configuration = {
+      system.nixos.tags = [ "hyprland" ];
+      programs.hyprland = {
+        enable = true;
+        withUWSM = true; # recommended for most users
+        xwayland.enable = true; # Xwayland can be disabled.
+      };
+    };
+  };
+
 
   # Configure keymap in X11
   services.xserver = {
