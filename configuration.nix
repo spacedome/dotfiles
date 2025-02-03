@@ -48,26 +48,27 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  specialisation = {
-    kde.configuration = {
-      system.nixos.tags = [ "kde" ];
-      # Enable the X11 windowing system.
-      services.xserver.enable = true;
-      # Enable the KDE Plasma Desktop Environment.
-      services.displayManager.sddm.enable = true;
-      services.xserver.desktopManager.plasma5.enable = true;
-      environment.plasma5.excludePackages = [ pkgs.kdePackages.baloo ];
-    };
-
-    hyprland.configuration = {
-      system.nixos.tags = [ "hyprland" ];
-      programs.hyprland = {
-        enable = true;
-        withUWSM = true; # recommended for most users
-        xwayland.enable = true; # Xwayland can be disabled.
-      };
-    };
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+  # Enable the KDE Plasma Desktop Environment.
+  services.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+  environment.plasma5.excludePackages = [ pkgs.kdePackages.baloo ];
+  
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true; # recommended for most users
+    xwayland.enable = true; # Xwayland can be disabled.
   };
+  # specialisation = {
+  #   kde.configuration = {
+  #     system.nixos.tags = [ "kde" ];
+  #   };
+
+  #   hyprland.configuration = {
+  #     system.nixos.tags = [ "hyprland" ];
+  #   };
+  # };
 
 
   # Configure keymap in X11
@@ -85,7 +86,7 @@
 
   # Enable sound with pipewire.
   #  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -137,6 +138,11 @@
     coreutils
     eza
     alacritty
+    borgbackup
+    ghostty
+    waybar
+    dunst
+    kitty
     btop
     powertop
     tlp
