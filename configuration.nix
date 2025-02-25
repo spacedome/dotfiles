@@ -140,8 +140,6 @@
     alacritty
     borgbackup
     ghostty
-    waybar
-    dunst
     kitty
     btop
     powertop
@@ -150,6 +148,12 @@
     usbutils
     xclip
     mullvad-vpn
+    waybar
+    dunst
+    libnotify
+    swww
+    rofi-wayland
+    networkmanagerapplet
   ];
   # programs.steam = {
   #   enable = true;
