@@ -51,7 +51,8 @@
     smplayer
     zathura
     zotero
-    # qbittorrent-qt5
+    nodejs
+    qbittorrent
     hlint
     ormolu
     ghc
@@ -74,7 +75,7 @@
 
   programs.emacs = {
     enable = true;
-    extraPackages = epkgs: [ epkgs.vterm epkgs.pdf-tools epkgs.emacsql-sqlite ];
+    extraPackages = epkgs: [ epkgs.vterm epkgs.pdf-tools epkgs.emacsql ];
   };
   
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -151,6 +152,7 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
+  home.sessionPath = [ "$HOME/.npm-global/bin" ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
