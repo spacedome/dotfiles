@@ -6,6 +6,9 @@
   home.username = "julien";
   home.homeDirectory = "/home/julien";
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -39,6 +42,8 @@
     p7zip
     imagemagick
     firefox
+    brave
+    claude-code
     helix
     krita
     mpv
@@ -51,7 +56,6 @@
     smplayer
     zathura
     zotero
-    nodejs
     qbittorrent
     hlint
     ormolu
@@ -94,7 +98,7 @@
   };
 
   programs.nh.enable = true;
-  programs.nh.flake = ./.;
+  programs.nh.flake = "/home/julien/dotfiles";
 
   programs.git = {
     enable = true;
@@ -152,7 +156,6 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
-  home.sessionPath = [ "$HOME/.npm-global/bin" ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
