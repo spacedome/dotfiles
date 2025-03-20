@@ -48,11 +48,16 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # Enable bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  programs.kdeconnect.enable = true;
   environment.plasma6.excludePackages = [ pkgs.kdePackages.baloo ];
   
   programs.hyprland = {
@@ -145,6 +150,7 @@
     unzip
     usbutils
     xclip
+    bluedevil
     mullvad-vpn
     # hyprland stuff
     waybar

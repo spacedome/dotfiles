@@ -54,6 +54,7 @@
     nixd # nix lsp
     signal-desktop
     smplayer
+    pcsx2
     zathura
     zotero
     qbittorrent
@@ -64,7 +65,9 @@
     ghc
     stack
     haskell-language-server
+    cabal2nix
     direnv
+    gh # github cli
     #fonts
     noto-fonts
     noto-fonts-extra
