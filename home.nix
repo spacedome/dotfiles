@@ -53,6 +53,7 @@
     nil # nix lsp
     nixd # nix lsp
     signal-desktop
+    mcomix
     smplayer
     pcsx2
     zathura

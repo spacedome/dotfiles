@@ -150,7 +150,7 @@
     unzip
     usbutils
     xclip
-    bluedevil
+    kdePackages.bluedevil
     mullvad-vpn
     # hyprland stuff
     waybar
