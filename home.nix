@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -8,6 +13,8 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  imports = [ inputs.zen-browser.homeModules.beta ];
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -83,9 +90,13 @@
 
   programs.emacs = {
     enable = true;
-    extraPackages = epkgs: [ epkgs.vterm epkgs.pdf-tools epkgs.emacsql ];
+    extraPackages = epkgs: [
+      epkgs.vterm
+      epkgs.pdf-tools
+      epkgs.emacsql
+    ];
   };
-  
+
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
@@ -113,17 +124,11 @@
   programs.lazygit.enable = true;
   programs.helix.defaultEditor = true;
 
-  programs.yazi = {
-    enable = true;
-    enableBashIntegration = true;
-    enableNushellIntegration = true;
-  };
   programs.zoxide = {
     enable = true;
     enableBashIntegration = true;
     enableNushellIntegration = true;
   };
-  
 
   programs.mpv.enable = true;
   programs.mpv.config = {
@@ -140,6 +145,52 @@
   programs.fzf.enable = true;
   programs.fzf.enableBashIntegration = true;
   programs.fzf.tmux.enableShellIntegration = true;
+
+  programs.zen-browser = {
+    enable = true;
+    policies = {
+      AutofillAddressEnabled = true;
+      AutofillCreditCardEnabled = false;
+      DisableAppUpdate = true;
+      DisableFeedbackCommands = true;
+      DisableFirefoxStudies = true;
+      DisablePocket = true; # save webs for later reading
+      DisableTelemetry = true;
+      DontCheckDefaultBrowser = true;
+      NoDefaultBookmarks = true;
+      OfferToSaveLogins = false;
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
+      };
+      ExtensionSettings = {
+        "wappalyzer@crunchlabz.com" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/wappalyzer/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "{85860b32-02a8-431a-b2b1-40fbd64c9c69}" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/github-file-icons/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden_password_manager/latest.xpi";
+          installation_mode = "force_installed";
+        };
+      };
+      Preferences =
+        let
+          locked = value: {
+            "Value" = value;
+            "Status" = "locked";
+          };
+        in
+        {
+          "browser.tabs.warnOnClose" = locked false;
+        };
+    };
+  };
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a

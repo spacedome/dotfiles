@@ -29,6 +29,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  services.tailscale.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -58,13 +59,14 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
   programs.kdeconnect.enable = true;
+  programs.partition-manager.enable = true;
   environment.plasma6.excludePackages = [ pkgs.kdePackages.baloo ];
   
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true; # recommended for most users
-    xwayland.enable = true; # Xwayland can be disabled.
-  };
+  # programs.hyprland = {
+  #   enable = true;
+  #   withUWSM = true; # recommended for most users
+  #   xwayland.enable = true; # Xwayland can be disabled.
+  # };
   # specialisation = {
   #   kde.configuration = {
   #     system.nixos.tags = [ "kde" ];
@@ -118,6 +120,8 @@
     packages = with pkgs; [ ];
   };
 
+
+
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "julien";
@@ -152,13 +156,6 @@
     xclip
     kdePackages.bluedevil
     mullvad-vpn
-    # hyprland stuff
-    waybar
-    dunst
-    libnotify
-    swww
-    rofi-wayland
-    networkmanagerapplet
   ];
   # programs.steam = {
   #   enable = true;
@@ -209,6 +206,13 @@
     user = "julien";
     dataDir = "/home/julien/Sync";    # Default folder for new synced folders
     configDir = "/home/julien/.config/syncthing";   # Folder for Syncthing's settings and keys
+  };
+
+  
+  fileSystems."/mnt/nfs" = {
+    device = "truenas-scale:/mnt/trash/julien"; 
+    fsType = "nfs";
+    options = [ "nfsvers=3" ];
   };
 
   # Binary Cache for Haskell.nix
