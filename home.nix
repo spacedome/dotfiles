@@ -75,6 +75,7 @@
     haskell-language-server
     cabal2nix
     direnv
+    nix-output-monitor
     gh # github cli
     #fonts
     noto-fonts
@@ -115,12 +116,12 @@
   programs.nh.enable = true;
   programs.nh.flake = "/home/julien/dotfiles";
 
-  programs.git = {
+  programs.git.settings = {
     enable = true;
     userName = "spacedome";
     userEmail = "spacedome@users.noreply.github.com";
   };
-  programs.git.difftastic.enable = true;
+  programs.difftastic.enable = true;
   programs.lazygit.enable = true;
   programs.helix.defaultEditor = true;
 
