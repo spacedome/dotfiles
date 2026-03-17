@@ -31,8 +31,9 @@
   networking.networkmanager.enable = true;
   services.tailscale.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "America/New_York";
+  # Set your time zone. (Dynamic time zone not worth the hassle)
+  # time.timeZone = "America/New_York";
+  time.timeZone = "America/Los_Angeles";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -155,7 +156,7 @@
     usbutils
     xclip
     kdePackages.bluedevil
-    mullvad-vpn
+    # mullvad-vpn provided by services.mullvad-vpn.enable
   ];
   programs.steam = {
     enable = true;
@@ -210,11 +211,11 @@
   };
 
   
-  fileSystems."/mnt/nfs" = {
-    device = "truenas-scale:/mnt/trash/julien"; 
-    fsType = "nfs";
-    options = [ "nfsvers=3" ];
-  };
+  # fileSystems."/mnt/nfs" = {
+  #   device = "truenas-scale:/mnt/trash/julien"; 
+  #   fsType = "nfs";
+  #   options = [ "nfsvers=3" "nofail" ];
+  # };
 
   # Binary Cache for Haskell.nix
   nix.settings.trusted-public-keys = [
@@ -223,6 +224,9 @@
   nix.settings.substituters = [
     "https://cache.iog.io"
   ];
+
+  nix.settings.max-jobs=7;
+  nix.settings.cores=2;
 
 
   environment.variables = {

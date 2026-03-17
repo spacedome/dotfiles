@@ -50,18 +50,21 @@
     imagemagick
     firefox
     brave
-    claude-code
+    # claude-code
+    # prefer : nix profile install github:sadjow/claude-code-nix
+    # update : nix profile update '.*claude.*'
     helix
     krita
     mpv
     digikam
     ispell
     graphviz
-    nil # nix lsp
-    nixd # nix lsp
+    nixd
     signal-desktop
     mcomix
     smplayer
+    obsidian
+    julia
     pcsx2
     zathura
     zotero
@@ -70,7 +73,6 @@
     ormolu
     ghc
     cabal-install
-    ghc
     stack
     haskell-language-server
     cabal2nix
@@ -81,7 +83,7 @@
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     liberation_ttf
     eb-garamond
     jetbrains-mono
@@ -115,10 +117,10 @@
   programs.nh.enable = true;
   programs.nh.flake = "/home/julien/dotfiles";
 
-  programs.git.settings = {
+  programs.git = {
     enable = true;
-    userName = "spacedome";
-    userEmail = "spacedome@users.noreply.github.com";
+    settings.user.name = "spacedome";
+    settings.user.email = "spacedome@users.noreply.github.com";
   };
   programs.difftastic.enable = true;
   programs.lazygit.enable = true;
@@ -146,51 +148,6 @@
   programs.fzf.enableBashIntegration = true;
   programs.fzf.tmux.enableShellIntegration = true;
 
-  programs.zen-browser = {
-    enable = true;
-    policies = {
-      AutofillAddressEnabled = true;
-      AutofillCreditCardEnabled = false;
-      DisableAppUpdate = true;
-      DisableFeedbackCommands = true;
-      DisableFirefoxStudies = true;
-      DisablePocket = true; # save webs for later reading
-      DisableTelemetry = true;
-      DontCheckDefaultBrowser = true;
-      NoDefaultBookmarks = true;
-      OfferToSaveLogins = false;
-      EnableTrackingProtection = {
-        Value = true;
-        Locked = true;
-        Cryptomining = true;
-        Fingerprinting = true;
-      };
-      ExtensionSettings = {
-        "wappalyzer@crunchlabz.com" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/wappalyzer/latest.xpi";
-          installation_mode = "force_installed";
-        };
-        "{85860b32-02a8-431a-b2b1-40fbd64c9c69}" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/github-file-icons/latest.xpi";
-          installation_mode = "force_installed";
-        };
-        "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden_password_manager/latest.xpi";
-          installation_mode = "force_installed";
-        };
-      };
-      Preferences =
-        let
-          locked = value: {
-            "Value" = value;
-            "Status" = "locked";
-          };
-        in
-        {
-          "browser.tabs.warnOnClose" = locked false;
-        };
-    };
-  };
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
@@ -209,7 +166,7 @@
   #  /etc/profiles/per-user/julien/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "hx";
   };
 
   # Let Home Manager install and manage itself.
