@@ -14,8 +14,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  imports = [ inputs.zen-browser.homeModules.beta ];
-
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -65,6 +63,7 @@
     smplayer
     obsidian
     julia
+    dua
     pcsx2
     zathura
     zotero
