@@ -4,8 +4,9 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/master";
-    # ensures they are using the same nixpkgs
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    helium.url = "github:schembriaiden/helium-browser-nix-flake";
+    helium.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
