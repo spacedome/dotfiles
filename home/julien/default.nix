@@ -12,18 +12,16 @@
   home.stateVersion = "24.05"; # Do not change
 
   home.packages = with pkgs; [
+    # claude-code
+    # prefer : nix profile install github:sadjow/claude-code-nix
+    # update : nix profile update '.*claude.*'
     anki
     jq
     p7zip
     imagemagick
     firefox
-    brave
-    # claude-code
-    # prefer : nix profile install github:sadjow/claude-code-nix
-    # update : nix profile update '.*claude.*'
     helix
     krita
-    mpv
     digikam
     ispell
     graphviz
@@ -38,18 +36,11 @@
     zathura
     zotero
     qbittorrent
-    hlint
-    ormolu
-    ghc
-    cabal-install
-    stack
-    haskell-language-server
-    cabal2nix
     direnv
     nix-output-monitor
-    gh # github cli
+    gh
   ] ++ [
-    inputs.helium.packages.${pkgs.system}.default
+    inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   programs.emacs = {
@@ -94,6 +85,7 @@
     "Alt+k" = ''playlist-shuffle ; show-text ''${playlist} 4000'';
   };
 
+  programs.zellij.enable = true;
   programs.nushell.enable = true;
   programs.bash.enable = true;
   programs.fzf.enable = true;

@@ -83,25 +83,12 @@
     kdePackages.bluedevil
   ];
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-  };
-
   services.syncthing = {
     enable = true;
     user = "julien";
     dataDir = "/home/julien/Sync";
     configDir = "/home/julien/.config/syncthing";
   };
-
-  # fileSystems."/mnt/nfs" = {
-  #   device = "truenas-scale:/mnt/trash/julien";
-  #   fsType = "nfs";
-  #   options = [ "nfsvers=3" "nofail" ];
-  # };
 
   system.stateVersion = "22.11"; # DO NOT CHANGE
 }

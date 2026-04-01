@@ -34,7 +34,9 @@
     in
     {
       nixosConfigurations = {
-        tangerine = mkHost { hostname = "tangerine"; }; # system set by nixpkgs.hostPlatform in hardware-configuration.nix
+        # system set by nixpkgs.hostPlatform in hardware-configuration.nix
+        tangerine = mkHost { hostname = "tangerine"; };
+        lemon = mkHost { hostname = "lemon"; };
       };
 
       homeConfigurations = {
