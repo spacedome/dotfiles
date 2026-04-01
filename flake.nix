@@ -41,6 +41,7 @@
 
       homeConfigurations = {
         "julien@tangerine" = mkHome { user = "julien"; };
+        "julien@lemon" = mkHome {user = "julien"; };
       };
     };
 }
