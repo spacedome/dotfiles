@@ -1,27 +1,7 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
+# Shared configuration across all machines
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
-
-  networking.hostName = "tangerine"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-
   networking.networkmanager.enable = true;
   services.tailscale.enable = true;
 
@@ -53,7 +33,6 @@
   programs.partition-manager.enable = true;
   environment.plasma6.excludePackages = [ pkgs.kdePackages.baloo ];
 
-
   # Configure keymap in X11
   services.xserver = {
     xkb.layout = "us";
@@ -61,7 +40,7 @@
   };
 
   services.printing.enable = true;
-  services.printing.drivers = [ pkgs.brlaser ]; 
+  services.printing.drivers = [ pkgs.brlaser ];
 
   services.mullvad-vpn.enable = true;
 
@@ -74,20 +53,17 @@
     pulse.enable = true;
   };
 
-  users.users.julien = {
-    isNormalUser = true;
-    description = "julien";
-    extraGroups = [ "networkmanager" "wheel" ];
-    # manage with home-manager
-    packages = [ ];
-  };
-
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "julien";
-
   nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Binary Cache for Haskell.nix
+  nix.settings.trusted-public-keys = [
+    "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+  ];
+  nix.settings.substituters = [
+    "https://cache.iog.io"
+  ];
 
   environment.systemPackages = with pkgs; [
     neovim
@@ -112,21 +88,20 @@
     kdePackages.bluedevil
     # mullvad-vpn provided by services.mullvad-vpn.enable
   ];
+
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
   };
+
   programs.tmux = {
     enable = true;
     shortcut = "a";
-    # aggressiveResize = true; -- Disabled to be iTerm-friendly
     baseIndex = 1;
     newSession = true;
-    # Stop tmux+escape craziness.
     escapeTime = 0;
-    # Force tmux to use /tmp for sockets (WSL2 compat)
     secureSocket = false;
 
     plugins = with pkgs; [
@@ -148,32 +123,19 @@
       bind c new-window -c "#{pane_current_path}"
     '';
   };
-   
+
   services.syncthing = {
     enable = true;
     user = "julien";
-    dataDir = "/home/julien/Sync";    # Default folder for new synced folders
-    configDir = "/home/julien/.config/syncthing";   # Folder for Syncthing's settings and keys
+    dataDir = "/home/julien/Sync";
+    configDir = "/home/julien/.config/syncthing";
   };
 
-  
   # fileSystems."/mnt/nfs" = {
-  #   device = "truenas-scale:/mnt/trash/julien"; 
+  #   device = "truenas-scale:/mnt/trash/julien";
   #   fsType = "nfs";
   #   options = [ "nfsvers=3" "nofail" ];
   # };
-
-  # Binary Cache for Haskell.nix
-  nix.settings.trusted-public-keys = [
-    "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-  ];
-  nix.settings.substituters = [
-    "https://cache.iog.io"
-  ];
-
-  nix.settings.max-jobs=7;
-  nix.settings.cores=2;
-
 
   fonts.packages = with pkgs; [
     noto-fonts
@@ -187,10 +149,8 @@
   ];
 
   environment.variables = {
-    FREETYPE_PROPERTIES="cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
+    FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
   };
+
   programs.ssh.startAgent = true;
-
-  system.stateVersion = "22.11"; # DO NOT CHANGE
-
 }

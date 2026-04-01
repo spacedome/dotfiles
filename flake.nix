@@ -17,22 +17,28 @@
       ...
     } @ inputs:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      mkHost =
+        { hostname }:
+        nixpkgs.lib.nixosSystem {
+          modules = [ ./hosts/${hostname} ];
+          specialArgs = { inherit inputs; };
+        };
+
+      mkHome =
+        { user, system ? "x86_64-linux" }:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [ ./home/${user} ];
+          extraSpecialArgs = { inherit inputs; };
+        };
     in
     {
       nixosConfigurations = {
-        tangerine = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ ./configuration.nix ];
-        };
+        tangerine = mkHost { hostname = "tangerine"; }; # system set by nixpkgs.hostPlatform in hardware-configuration.nix
       };
+
       homeConfigurations = {
-        julien = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ ./home.nix ];
-          extraSpecialArgs = { inherit inputs; };
-        };
+        "julien@tangerine" = mkHome { user = "julien"; };
       };
     };
 }

@@ -49,7 +49,7 @@
     nix-output-monitor
     gh # github cli
   ] ++ [
-    inputs.helium.packages.${system}.default
+    inputs.helium.packages.${pkgs.system}.default
   ];
 
   programs.emacs = {
@@ -70,6 +70,7 @@
 
   programs.git = {
     enable = true;
+    signing.format = null;
     settings.user.name = "spacedome";
     settings.user.email = "spacedome@users.noreply.github.com";
   };
@@ -98,7 +99,6 @@
   programs.fzf.enable = true;
   programs.fzf.enableBashIntegration = true;
   programs.fzf.tmux.enableShellIntegration = true;
-
 
   home.sessionVariables = {
     EDITOR = "hx";
