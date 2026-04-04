@@ -21,8 +21,8 @@
 
   networking.hostName = "lemon";
 
-  nix.settings.max-jobs = 7;
-  nix.settings.cores = 2;
+  # nix.settings.max-jobs = 7;
+  # nix.settings.cores = 2;
 
   users.users.julien = {
     isNormalUser = true;
