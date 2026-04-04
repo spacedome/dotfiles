@@ -52,6 +52,14 @@
     ];
   };
 
+  programs.zathura = {
+    enable = true;
+    mappings = {
+      j = "navigate next";
+      k = "navigate previous";
+    };
+  };
+
   home.file = {
     # currently none
   };
