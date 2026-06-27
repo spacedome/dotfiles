@@ -23,6 +23,7 @@
     helix
     krita
     digikam
+    freecad
     ispell
     graphviz
     nixd
