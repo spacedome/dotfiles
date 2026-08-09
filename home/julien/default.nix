@@ -23,7 +23,7 @@
     helix
     krita
     digikam
-    freecad
+    # freecad
     ispell
     graphviz
     nixd
@@ -44,14 +44,14 @@
     inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
-  programs.emacs = {
-    enable = true;
-    extraPackages = epkgs: [
-      epkgs.vterm
-      epkgs.pdf-tools
-      epkgs.emacsql
-    ];
-  };
+  # programs.emacs = {
+  #   enable = true;
+  #   extraPackages = epkgs: [
+  #     epkgs.vterm
+  #     epkgs.pdf-tools
+  #     epkgs.emacsql
+  #   ];
+  # };
 
   programs.zathura = {
     enable = true;
@@ -90,6 +90,10 @@
     directory-mode = "recursive";
   };
   programs.mpv.bindings = {
+    "UP" = "seek 30";
+    "DOWN" = "seek -30";
+    "RIGHT" = "seek 2.5";
+    "LEFT" = "seek -2.5";
     "ctrl+r" = "cycle_values video-rotate 90 180 270 0";
     "Alt+k" = ''playlist-shuffle ; show-text ''${playlist} 4000'';
   };
